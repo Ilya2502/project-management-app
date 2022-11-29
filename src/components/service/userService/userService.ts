@@ -1,10 +1,10 @@
 import { isExpired, decodeToken } from 'react-jwt';
-import { getData, postData } from '../fetch-service/fetch-service';
+import { getData, postData } from '../fetchService/fetchService';
 import { UserType, NewUserType, LoginUserType, TokenType, DecodedTokenType } from './types';
 import {
   getLocalStorageUserId,
   setLocalStorageItem,
-} from '../local-storage-service/local-storage-service';
+} from '../localStorageService/localStorageService';
 
 const createUser = async (name: string, login: string, password: string) => {
   const endPoint = `auth/signup`;

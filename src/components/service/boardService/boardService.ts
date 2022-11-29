@@ -1,6 +1,6 @@
-import { getData, postData, deleteData, putData } from '../fetch-service/fetch-service';
+import { getData, postData, deleteData, putData } from '../fetchService/fetchService';
 import { BoardResponseType, NewBoardType } from './types';
-import { getLocalStorageUserId } from '../local-storage-service/local-storage-service';
+import { getLocalStorageUserId } from '../localStorageService/localStorageService';
 
 const createBoard = async (title: string, users = ['']) => {
   // в title json.stringify({title: '', description: ''})
