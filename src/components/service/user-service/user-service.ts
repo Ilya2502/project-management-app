@@ -16,13 +16,13 @@ export const loginUser = async (login: string, password: string) => {
   const data = await postData<TokenType, LoginUserType>(endPoint, body);
   const token = JSON.stringify(data?.token);
   console.log(data);
-  const myDecodedToken: DecodedTokenType = decodeToken(token);
-  const isMyTokenExpired = isExpired(token);
+  const decodedToken: DecodedTokenType | null = decodeToken(token);
+  const isTokenExpired = isExpired(token);
   localStorage.setItem('token', token);
-  if (myDecodedToken?.id) {
-    localStorage.setItem('userId', JSON.stringify(myDecodedToken?.id));
+  if (decodedToken) {
+    localStorage.setItem('decodedToken', JSON.stringify(decodedToken));
+    localStorage.setItem('isMyTokenExpired', JSON.stringify(isTokenExpired));
   }
-  console.log(myDecodedToken, isMyTokenExpired);
   return data;
 };
 
@@ -35,9 +35,11 @@ export const getAllUsers = async () => {
 
 export const getUserById = async () => {
   let userId = '';
-  const userIdString = localStorage.getItem('userId');
-  if (userIdString) {
-    userId = JSON.parse(userIdString);
+  let decodedToken: DecodedTokenType;
+  const decodedTokenString = localStorage.getItem('decodedToken');
+  if (decodedTokenString) {
+    decodedToken = JSON.parse(decodedTokenString);
+    userId = decodedToken.id;
   }
   const endPoint = `users/${userId}`;
   const data = await getData<UserType>(endPoint);

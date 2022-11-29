@@ -24,4 +24,4 @@ export type DecodedTokenType = {
     login: string,
     iat: number,
     exp: number,
-} | null;
+};
