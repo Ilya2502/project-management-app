@@ -1,0 +1,34 @@
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: $primaryColor;
+  @include flex(space-between, center );
+
+  @media (max-width: $mobile-width) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .school-link-block {
+    @include flex(flex-start, center );
+    gap: 10px;
+    padding-left: 1%;
+    
+    .rss_logo {
+      width: 70px;
+    }
+  }
+
+  .team-links {
+    padding-right: 2%;
+    @include flex(center, center );
+    gap: 15px;
+
+    .github-logo {
+      width: 30px;
+    }
+  }
+}
