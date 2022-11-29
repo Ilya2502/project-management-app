@@ -7,6 +7,7 @@ body {
   background: $backgroundColorBody;
   position: relative;
   overflow-y: overlay;
+  @include font();
 }
 
 .App {

@@ -1,5 +1,5 @@
 footer {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -26,6 +26,10 @@ footer {
     padding-right: 2%;
     @include flex(center, center );
     gap: 15px;
+
+    @media (max-width: $desktop-width) {
+      padding-right: 4%;
+    }
 
     .github-logo {
       width: 30px;
