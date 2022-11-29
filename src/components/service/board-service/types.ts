@@ -1,4 +1,4 @@
-export type BoardType = {
+export type BoardResponseType = {
     _id: string,
     title: string,
     owner: string,
@@ -8,7 +8,7 @@ export type BoardType = {
 export type NewBoardType = {
     title: string,
     owner: string,
-    // users: string[],
+    users: string[],
 }
 
 // export type NewUserType = {

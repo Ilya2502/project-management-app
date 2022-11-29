@@ -1,8 +1,12 @@
 import { isExpired, decodeToken } from 'react-jwt';
 import { getData, postData } from '../fetch-service/fetch-service';
 import { UserType, NewUserType, LoginUserType, TokenType, DecodedTokenType } from './types';
+import {
+  getLocalStorageUserId,
+  setLocalStorageItem,
+} from '../local-storage-service/local-storage-service';
 
-export const createUser = async (name: string, login: string, password: string) => {
+const createUser = async (name: string, login: string, password: string) => {
   const endPoint = `auth/signup`;
   const body = { name, login, password };
   const data = await postData<UserType, NewUserType>(endPoint, body);
@@ -10,7 +14,7 @@ export const createUser = async (name: string, login: string, password: string) 
   return data;
 };
 
-export const loginUser = async (login: string, password: string) => {
+const loginUser = async (login: string, password: string) => {
   const endPoint = `auth/signin`;
   const body = { login, password };
   const data = await postData<TokenType, LoginUserType>(endPoint, body);
@@ -18,31 +22,32 @@ export const loginUser = async (login: string, password: string) => {
   console.log(data);
   const decodedToken: DecodedTokenType | null = decodeToken(token);
   const isTokenExpired = isExpired(token);
-  localStorage.setItem('token', token);
+  setLocalStorageItem('token', data?.token);
   if (decodedToken) {
-    localStorage.setItem('decodedToken', JSON.stringify(decodedToken));
-    localStorage.setItem('isMyTokenExpired', JSON.stringify(isTokenExpired));
+    setLocalStorageItem('decodedToken', decodedToken);
+    setLocalStorageItem('isMyTokenExpired', isTokenExpired);
   }
   return data;
 };
 
-export const getAllUsers = async () => {
+const getAllUsers = async () => {
   const endPoint = `users`;
   const data = await getData<UserType[]>(endPoint);
   console.log(data);
   return data;
 };
 
-export const getUserById = async () => {
-  let userId = '';
-  let decodedToken: DecodedTokenType;
-  const decodedTokenString = localStorage.getItem('decodedToken');
-  if (decodedTokenString) {
-    decodedToken = JSON.parse(decodedTokenString);
-    userId = decodedToken.id;
-  }
+const getUserById = async () => {
+  const userId = getLocalStorageUserId();
   const endPoint = `users/${userId}`;
   const data = await getData<UserType>(endPoint);
   console.log(data);
   return data;
+};
+
+export const userService = {
+  createUser,
+  loginUser,
+  getAllUsers,
+  getUserById,
 };
