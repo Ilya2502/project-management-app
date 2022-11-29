@@ -1,13 +1,10 @@
 import { RequestType } from './types';
+import { getLocalStorageItem } from '../local-storage-service/local-storage-service';
 
 const baseUrl = `https://final-task-backend-production-6cf1.up.railway.app`;
 
 const getRequestConfig = <B>(requestType: RequestType, body: B) => {
-  let token = '';
-  const tokenString = localStorage.getItem('token');
-  if (tokenString) {
-    token = JSON.parse(tokenString);
-  }
+  const token = getLocalStorageItem('token');
   const config = {
     body: JSON.stringify(body),
     headers: {

@@ -1,6 +1,5 @@
-// import { isExpired, decodeToken } from 'react-jwt';
 import { getData, postData } from '../fetch-service/fetch-service';
-import { BoardType, NewBoardType, DecodedTokenType } from './types';
+import { BoardResponseType, NewBoardType, DecodedTokenType } from './types';
 
 export const createBoard = async (title: string, users = ['']) => {
   // в title json.stringify({title: '', description: ''})
@@ -13,7 +12,7 @@ export const createBoard = async (title: string, users = ['']) => {
     owner = decodedToken?.id;
   }
   const body = { title, owner, users };
-  const data = await postData<BoardType, NewBoardType>(endPoint, body);
+  const data = await postData<BoardResponseType, NewBoardType>(endPoint, body);
   console.log(data);
   return data;
 };
@@ -36,7 +35,7 @@ export const createBoard = async (title: string, users = ['']) => {
 
 export const getAllBoards = async () => {
   const endPoint = `boards`;
-  const data = await getData<BoardType[]>(endPoint);
+  const data = await getData<BoardResponseType[]>(endPoint);
   console.log(data);
   return data;
 };
