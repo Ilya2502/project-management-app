@@ -1,5 +1,5 @@
 import { RequestType } from './types';
-import { getLocalStorageItem } from '../local-storage-service/local-storage-service';
+import { getLocalStorageItem } from '../localStorageService/localStorageService';
 
 const baseUrl = `https://final-task-backend-production-6cf1.up.railway.app`;
 

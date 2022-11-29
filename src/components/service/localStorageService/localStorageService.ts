@@ -1,4 +1,4 @@
-import { DecodedTokenType } from '../user-service/types';
+import { DecodedTokenType } from '../userService/types';
 
 export const getLocalStorageUserId = () => {
   let userId = '';
