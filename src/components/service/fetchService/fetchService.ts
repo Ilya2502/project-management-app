@@ -4,7 +4,7 @@ import { getLocalStorageItem } from '../localStorageService/localStorageService'
 const baseUrl = `https://final-task-backend-production-6cf1.up.railway.app`;
 
 const getRequestConfig = <B>(requestType: RequestType, body: B) => {
-  const token: string | null = getLocalStorageItem('token');
+  const token: string | null | undefined = getLocalStorageItem('token');
   const config = {
     body: JSON.stringify(body),
     headers: {

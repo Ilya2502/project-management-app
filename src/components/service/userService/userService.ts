@@ -1,5 +1,5 @@
 import { isExpired, decodeToken } from 'react-jwt';
-import { getData, postData } from '../fetchService/fetchService';
+import { getData, postData, putData, deleteData } from '../fetchService/fetchService';
 import { UserType, NewUserType, LoginUserType, TokenType, DecodedTokenType } from './types';
 import {
   getLocalStorageUserId,
@@ -45,9 +45,28 @@ const getUserById = async () => {
   return data;
 };
 
+const updateUserById = async (name: string, login: string, password: string) => {
+  const userId = getLocalStorageUserId();
+  const endPoint = `users/${userId}`;
+  const body = { name, login, password };
+  const data = await putData<UserType, NewUserType>(endPoint, body);
+  console.log(data);
+  return data;
+};
+
+const deleteUserById = async () => {
+  const userId = getLocalStorageUserId();
+  const endPoint = `users/${userId}`;
+  const data = await deleteData(endPoint);
+  console.log(data);
+  return data;
+};
+
 export const userService = {
   createUser,
   loginUser,
   getAllUsers,
   getUserById,
+  updateUserById,
+  deleteUserById,
 };
