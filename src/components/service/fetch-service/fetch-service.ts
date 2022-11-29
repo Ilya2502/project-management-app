@@ -4,7 +4,7 @@ import { getLocalStorageItem } from '../local-storage-service/local-storage-serv
 const baseUrl = `https://final-task-backend-production-6cf1.up.railway.app`;
 
 const getRequestConfig = <B>(requestType: RequestType, body: B) => {
-  const token = getLocalStorageItem('token');
+  const token: string | null = getLocalStorageItem('token');
   const config = {
     body: JSON.stringify(body),
     headers: {
@@ -14,21 +14,21 @@ const getRequestConfig = <B>(requestType: RequestType, body: B) => {
     },
   };
   switch (requestType) {
-    //   case 'DELETE':
-    //     return {
-    //       method: 'DELETE',
-    //       ...config,
-    //     };
+    case 'DELETE':
+      return {
+        method: 'DELETE',
+        ...config,
+      };
     case 'POST':
       return {
         method: 'POST',
         ...config,
       };
-    //   case 'PUT':
-    //     return {
-    //       method: 'PUT',
-    //       ...config,
-    //     };
+    case 'PUT':
+      return {
+        method: 'PUT',
+        ...config,
+      };
     case 'GET':
       return {
         method: 'GET',
@@ -44,20 +44,11 @@ const typedFetch = async <T, B>(
   request: RequestType,
   body?: B
 ): Promise<T | null> => {
-  try {
-    const url = `${baseUrl}/${endPoint}`;
-    const requestConfig = getRequestConfig(request, body);
-    // if (request === 'DELETE') {
-    // await fetch(`${url}`, requestConfig);
-    // return null;
-    // }
-    const response = await fetch(`${url}`, requestConfig);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log('error', request);
-    return null;
-  }
+  const url = `${baseUrl}/${endPoint}`;
+  const requestConfig = getRequestConfig(request, body);
+  const response = await fetch(`${url}`, requestConfig);
+  const data = await response.json();
+  return data;
 };
 
 export const getData = async <T>(endPoint: string) => {
@@ -67,5 +58,14 @@ export const getData = async <T>(endPoint: string) => {
 
 export const postData = async <R, B>(endPoint: string, body: B) => {
   const data = await typedFetch<R, B>(endPoint, 'POST', body);
+  return data;
+};
+
+export const deleteData = async (endPoint: string) => {
+  await typedFetch<never, never>(endPoint, 'DELETE');
+};
+
+export const putData = async <R, B>(endPoint: string, body: B) => {
+  const data = await typedFetch<R, B>(endPoint, 'PUT', body);
   return data;
 };

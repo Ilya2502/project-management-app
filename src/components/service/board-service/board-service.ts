@@ -1,53 +1,60 @@
-import { getData, postData } from '../fetch-service/fetch-service';
-import { BoardResponseType, NewBoardType, DecodedTokenType } from './types';
+import { getData, postData, deleteData, putData } from '../fetch-service/fetch-service';
+import { BoardResponseType, NewBoardType } from './types';
+import { getLocalStorageUserId } from '../local-storage-service/local-storage-service';
 
-export const createBoard = async (title: string, users = ['']) => {
+const createBoard = async (title: string, users = ['']) => {
   // в title json.stringify({title: '', description: ''})
   const endPoint = `boards`;
-  let owner = '';
-  let decodedToken: DecodedTokenType;
-  const decodedTokenString = localStorage.getItem('decodedToken');
-  if (decodedTokenString) {
-    decodedToken = JSON.parse(decodedTokenString);
-    owner = decodedToken?.id;
-  }
+  const owner = getLocalStorageUserId();
   const body = { title, owner, users };
   const data = await postData<BoardResponseType, NewBoardType>(endPoint, body);
   console.log(data);
   return data;
 };
 
-// export const loginUser = async (login: string, password: string) => {
-//   const endPoint = `auth/signin`;
-//   const body = { login, password };
-//   const data = await postData<TokenType, LoginUserType>(endPoint, body);
-//   const token = JSON.stringify(data?.token);
-//   console.log(data);
-//   const myDecodedToken: DecodedTokenType = decodeToken(token);
-//   const isMyTokenExpired = isExpired(token);
-//   localStorage.setItem('token', token);
-//   if (myDecodedToken?.id) {
-//     localStorage.setItem('userId', JSON.stringify(myDecodedToken?.id));
-//   }
-//   console.log(myDecodedToken, isMyTokenExpired);
-//   return data;
-// };
-
-export const getAllBoards = async () => {
+const getAllBoards = async () => {
   const endPoint = `boards`;
   const data = await getData<BoardResponseType[]>(endPoint);
   console.log(data);
   return data;
 };
 
-// export const getUserById = async () => {
-//   let userId = '';
-//   const userIdString = localStorage.getItem('userId');
-//   if (userIdString) {
-//     userId = JSON.parse(userIdString);
-//   }
-//   const endPoint = `users/${userId}`;
-//   const data = await getData<UserType>(endPoint);
-//   console.log(data);
-//   return data;
-// };
+const getBoardById = async (boardId: string) => {
+  const endPoint = `boards/${boardId}`;
+  const data = await getData<BoardResponseType>(endPoint);
+  console.log(data);
+  return data;
+};
+
+const getBoardsByUserId = async () => {
+  const userId = getLocalStorageUserId();
+  const endPoint = `boardsSet/${userId}`;
+  const data = await getData<BoardResponseType[]>(endPoint);
+  console.log(data);
+  return data;
+};
+
+const deleteBoardById = async (boardId: string) => {
+  const endPoint = `boards/${boardId}`;
+  const data = await deleteData(endPoint);
+  console.log(data);
+  return data;
+};
+
+const updateBoardById = async (boardId: string, title: string, users = ['']) => {
+  const endPoint = `boards/${boardId}`;
+  const owner = getLocalStorageUserId();
+  const body = { title, owner, users };
+  const data = await putData<BoardResponseType, NewBoardType>(endPoint, body);
+  console.log(data);
+  return data;
+};
+
+export const boardService = {
+  createBoard,
+  getAllBoards,
+  getBoardById,
+  getBoardsByUserId,
+  deleteBoardById,
+  updateBoardById,
+};

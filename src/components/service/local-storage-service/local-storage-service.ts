@@ -12,12 +12,8 @@ export const getLocalStorageUserId = () => {
 };
 
 export const getLocalStorageItem = (key: string) => {
-  let item = '';
-  const itemString = localStorage.getItem(key);
-  if (itemString) {
-    item = JSON.parse(itemString);
-  }
-  return item;
+  const storageString: string = localStorage.getItem(key) ?? '';
+  return storageString ? JSON.parse(storageString) : null;
 };
 
 export const setLocalStorageItem = <T>(key: string, data: T) => {

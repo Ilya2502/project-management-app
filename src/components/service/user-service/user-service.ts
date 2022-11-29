@@ -6,7 +6,7 @@ import {
   setLocalStorageItem,
 } from '../local-storage-service/local-storage-service';
 
-export const createUser = async (name: string, login: string, password: string) => {
+const createUser = async (name: string, login: string, password: string) => {
   const endPoint = `auth/signup`;
   const body = { name, login, password };
   const data = await postData<UserType, NewUserType>(endPoint, body);
@@ -14,7 +14,7 @@ export const createUser = async (name: string, login: string, password: string) 
   return data;
 };
 
-export const loginUser = async (login: string, password: string) => {
+const loginUser = async (login: string, password: string) => {
   const endPoint = `auth/signin`;
   const body = { login, password };
   const data = await postData<TokenType, LoginUserType>(endPoint, body);
@@ -30,17 +30,24 @@ export const loginUser = async (login: string, password: string) => {
   return data;
 };
 
-export const getAllUsers = async () => {
+const getAllUsers = async () => {
   const endPoint = `users`;
   const data = await getData<UserType[]>(endPoint);
   console.log(data);
   return data;
 };
 
-export const getUserById = async () => {
+const getUserById = async () => {
   const userId = getLocalStorageUserId();
   const endPoint = `users/${userId}`;
   const data = await getData<UserType>(endPoint);
   console.log(data);
   return data;
+};
+
+export const userService = {
+  createUser,
+  loginUser,
+  getAllUsers,
+  getUserById,
 };
