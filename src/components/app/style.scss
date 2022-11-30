@@ -1,0 +1,17 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: $backgroundColorBody;
+  position: relative;
+  overflow-y: overlay;
+  @include font();
+}
+
+.App {
+  .main {
+    margin: 0 1%;
+  }
+}
