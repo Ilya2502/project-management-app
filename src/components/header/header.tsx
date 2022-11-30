@@ -57,14 +57,16 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div" className={title}>
-            <NavLink to="/">Kanban</NavLink>
+            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">
+              Kanban
+            </NavLink>
           </Typography>
           <SelectLang />
           <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
-            <NavLink to="/login">
+            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
               <Button sx={{ mr: 1, color: 'white' }}>Sing In</Button>
             </NavLink>
-            <NavLink to="/registration">
+            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/registration">
               <Button>Sing Up</Button>
             </NavLink>
           </ButtonGroup>
