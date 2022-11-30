@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { makeStyles } from '@mui/styles';
+import { NavLink } from 'react-router-dom';
 import SelectLang from 'components/select-lang/select-lang';
 import { ElevationScrollProps } from './types';
 
@@ -22,12 +23,10 @@ const ElevationScroll = (props: ElevationScrollProps) => {
   });
 
   return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
+    elevation: trigger ? 8 : 0,
     style: {
-      backgroundColor: trigger ? '#1976d2' : 'transparent',
-      color: trigger ? 'white' : 'black',
+      backgroundColor: trigger ? '#1669bc' : '#1976d2',
       transition: trigger ? '0.3s' : '0.5s',
-      borderBottom: trigger ? 'none' : '1px solid black',
     },
   });
 };
@@ -58,12 +57,16 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div" className={title}>
-            Kanban
+            <NavLink to="/">Kanban</NavLink>
           </Typography>
           <SelectLang />
           <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
-            <Button>Sing In</Button>
-            <Button>Sing Up</Button>
+            <NavLink to="/login">
+              <Button sx={{ mr: 1, color: 'white' }}>Sing In</Button>
+            </NavLink>
+            <NavLink to="/registration">
+              <Button>Sing Up</Button>
+            </NavLink>
           </ButtonGroup>
         </Toolbar>
       </AppBar>
