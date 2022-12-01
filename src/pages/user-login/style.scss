@@ -1,0 +1,33 @@
+.user-login-wrapper {
+  margin: 0 auto;
+  margin-top: calc(50vh - (166px / 2) - 60px);
+  width: 250px;
+  height: 166px;
+  .user-login-form {
+    @include flex();
+    flex-direction: column;
+    gap: 20px;
+
+    .user-login-form__label {
+      position: relative;
+      .user-login-form__input {
+        outline: none;
+        width: 240px;
+      }
+
+      .error {
+        display: inline-block;
+        color: $errorColor;
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+      }
+    }
+
+    .user-login-form__submit {
+      margin-top: 15px;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}

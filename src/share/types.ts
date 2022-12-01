@@ -1,0 +1,10 @@
+export interface ToastMessageProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  message: ToastMessageSettings;
+}
+
+export interface ToastMessageSettings {
+  severity: 'success' | 'error';
+  text: string;
+}
