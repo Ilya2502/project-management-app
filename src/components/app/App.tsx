@@ -36,6 +36,7 @@ const App = () => {
             <Route path="/boards" element={<Boards />} />
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/login" element={<UserLogin />} />
+            <Route path="/registration" element={<RegistrationUser />} />
             <Route path="/notFound" element={<Page404 heading="Error 404" />} />
             <Route path="/*" element={<Navigate to="/notFound" />} />
           </Routes>
