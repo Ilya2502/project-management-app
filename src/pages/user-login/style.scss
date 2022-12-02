@@ -3,6 +3,11 @@
   margin-top: calc(50vh - (166px / 2) - 60px);
   width: 250px;
   height: 166px;
+
+  .user-login-header {
+    text-align: center
+  }
+
   .user-login-form {
     @include flex();
     flex-direction: column;

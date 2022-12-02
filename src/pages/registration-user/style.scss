@@ -3,6 +3,11 @@
   margin-top: calc(50vh - (230px / 2) - 60px);
   width: 250px;
   height: 230px;
+
+  .user-registration-header {
+    text-align: center
+  }
+
   .user-registration-form {
     @include flex();
     flex-direction: column;
