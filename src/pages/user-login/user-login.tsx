@@ -7,7 +7,7 @@ import { userService } from 'components/service/userService/userService';
 import ToastMessage from 'components/UI/toast-message/toast-message';
 import { ToastMessageSettings } from 'share/types';
 import { getLocalStorageItem } from 'components/service/localStorageService/localStorageService';
-import { setUserToken } from 'features/user/user-slice';
+import { setUserToken, setUserLogin } from 'features/user/user-slice';
 import { RootState } from 'share/types';
 
 const { loginUser } = userService;
@@ -41,7 +41,9 @@ const Userlogin = () => {
     } else {
       toastMessageSet('success', `${data.login} hello!`);
       const token = getLocalStorageItem('token');
+      const decodedToken = getLocalStorageItem('decodedToken');
       dispatch(setUserToken(token));
+      dispatch(setUserLogin(decodedToken.login));
     }
   };
 
@@ -55,6 +57,7 @@ const Userlogin = () => {
       <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
       {isUserLogin && <Navigate to="/boards" />}
       <div className="user-login-wrapper">
+        <h2 className="user-login-header">Sign In</h2>
         <form className="user-login-form" onSubmit={handleSubmit(onSubmit)}>
           <label className="user-login-form__label" htmlFor="login">
             Login:
@@ -99,7 +102,7 @@ const Userlogin = () => {
               type="password"
               placeholder="Password"
               {...register('password', {
-                required: 'Input your name',
+                required: 'Input your password',
                 minLength: {
                   value: 6,
                   message: 'minimum of 6 characters',

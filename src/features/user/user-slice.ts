@@ -3,6 +3,7 @@ import { getLocalStorageItem } from 'components/service/localStorageService/loca
 
 const initialState = {
   userToken: getLocalStorageItem('token'),
+  userLogin: getLocalStorageItem('decodedToken')?.login || null,
 };
 
 export const userSlice = createSlice({
@@ -12,8 +13,11 @@ export const userSlice = createSlice({
     setUserToken: (state, action) => {
       state.userToken = action.payload;
     },
+    setUserLogin: (state, action) => {
+      state.userLogin = action.payload;
+    },
   },
 });
 
-export const { setUserToken } = userSlice.actions;
+export const { setUserToken, setUserLogin } = userSlice.actions;
 export default userSlice.reducer;

@@ -12,5 +12,6 @@ export interface ToastMessageSettings {
 export interface RootState {
   user: {
     userToken: string | null;
+    userLogin: string | null;
   };
 }

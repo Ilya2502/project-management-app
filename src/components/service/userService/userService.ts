@@ -50,20 +50,18 @@ const updateUserById = async (name: string, login: string, password: string) => 
   const endPoint = `users/${userId}`;
   const body = { name, login, password };
   const data = await putData<UserType, NewUserType>(endPoint, body);
-  console.log(data);
-  return data;
-};
-
-const deleteUserById = async () => {
-  const userId = getLocalStorageUserId();
-  const endPoint = `users/${userId}`;
-  const data = await deleteData(endPoint);
-  console.log(data);
   return data;
 };
 
 export const userSignOut = () => {
   localStorage.clear();
+};
+
+const deleteUserById = async () => {
+  const userId = getLocalStorageUserId();
+  const endPoint = `users/${userId}`;
+  await deleteData(endPoint);
+  userSignOut();
 };
 
 export const userService = {

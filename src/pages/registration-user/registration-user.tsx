@@ -48,9 +48,10 @@ const RegistrationUser = () => {
   return (
     <React.Fragment>
       {isUserLogin && <Navigate to="/boards" />}
+      <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
 
       <div className="user-registration-wrapper">
-        <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
+        <h2 className="user-registration-header">Sign Up</h2>
         <form className="user-registration-form" onSubmit={handleSubmit(onSubmit)}>
           <label className="user-registration-form__label" htmlFor="firstName">
             Name:
@@ -95,7 +96,7 @@ const RegistrationUser = () => {
               type="text"
               placeholder="Login"
               {...register('login', {
-                required: 'Input your registration',
+                required: 'Input your login',
                 minLength: {
                   value: 2,
                   message: 'minimum of 2 characters',
@@ -131,7 +132,7 @@ const RegistrationUser = () => {
               type="password"
               placeholder="Password"
               {...register('password', {
-                required: 'Input your name',
+                required: 'Input your password',
                 minLength: {
                   value: 6,
                   message: 'minimum of 6 characters',
