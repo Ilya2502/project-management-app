@@ -55,7 +55,7 @@ const Userlogin = () => {
   return (
     <React.Fragment>
       <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
-      {isUserLogin && <Navigate to="/boards" />}
+      {isUserLogin && <Navigate to="/main" />}
       <div className="user-login-wrapper">
         <h2 className="user-login-header">Sign In</h2>
         <form className="user-login-form" onSubmit={handleSubmit(onSubmit)}>
