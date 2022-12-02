@@ -8,3 +8,9 @@ export interface ToastMessageSettings {
   severity: 'success' | 'error';
   text: string;
 }
+
+export interface RootState {
+  user: {
+    userToken: string | null;
+  };
+}

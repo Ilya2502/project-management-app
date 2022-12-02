@@ -11,8 +11,12 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { makeStyles } from '@mui/styles';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import SelectLang from 'components/select-lang/select-lang';
 import { ElevationScrollProps } from './types';
+import { setUserToken } from 'features/user/user-slice';
+import { userSignOut } from '../service/userService/userService';
+import { RootState } from 'share/types';
 
 const ElevationScroll = (props: ElevationScrollProps) => {
   const { children, window } = props;
@@ -41,8 +45,16 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const isUserLogin = useSelector((state: RootState) => state.user.userToken);
   const classes = useStyles();
   const { menuButton, title } = classes;
+
+  const signOutHandler = () => {
+    userSignOut();
+    dispatch(setUserToken(null));
+  };
+
   return (
     <ElevationScroll>
       <AppBar position="sticky" sx={{ pt: 1, pb: 1 }}>
@@ -61,15 +73,31 @@ const Header = () => {
               Kanban
             </NavLink>
           </Typography>
+          {isUserLogin ? (
+            <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
+              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/edit-profile">
+                <Button sx={{ mr: 1, color: 'white' }}>Edit profile</Button>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/boards">
+                <Button sx={{ mr: 1, color: 'white' }}>Boards</Button>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">
+                <Button onClick={signOutHandler} sx={{ mr: 1, color: 'white' }}>
+                  Sing Out
+                </Button>
+              </NavLink>
+            </ButtonGroup>
+          ) : (
+            <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
+              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
+                <Button sx={{ mr: 1, color: 'white' }}>Sing In</Button>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/registration">
+                <Button sx={{ mr: 1, color: 'white' }}>Sing Up</Button>
+              </NavLink>
+            </ButtonGroup>
+          )}
           <SelectLang />
-          <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
-            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
-              <Button sx={{ mr: 1, color: 'white' }}>Sing In</Button>
-            </NavLink>
-            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/registration">
-              <Button>Sing Up</Button>
-            </NavLink>
-          </ButtonGroup>
         </Toolbar>
       </AppBar>
     </ElevationScroll>

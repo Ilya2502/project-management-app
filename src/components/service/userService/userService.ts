@@ -62,6 +62,10 @@ const deleteUserById = async () => {
   return data;
 };
 
+export const userSignOut = () => {
+  localStorage.clear();
+};
+
 export const userService = {
   createUser,
   loginUser,
@@ -69,4 +73,5 @@ export const userService = {
   getUserById,
   updateUserById,
   deleteUserById,
+  userSignOut,
 };
