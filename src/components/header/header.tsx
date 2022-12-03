@@ -78,7 +78,7 @@ const Header = () => {
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/edit-profile">
                 <Button sx={{ mr: 1, color: 'white' }}>Edit profile</Button>
               </NavLink>
-              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/boards">
+              <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/main">
                 <Button sx={{ mr: 1, color: 'white' }}>Boards</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">

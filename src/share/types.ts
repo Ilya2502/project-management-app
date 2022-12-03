@@ -15,3 +15,9 @@ export interface RootState {
     userLogin: string | null;
   };
 }
+
+export interface ModalWindowProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  children: JSX.Element;
+}
