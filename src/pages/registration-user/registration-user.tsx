@@ -47,7 +47,7 @@ const RegistrationUser = () => {
 
   return (
     <React.Fragment>
-      {isUserLogin && <Navigate to="/boards" />}
+      {isUserLogin && <Navigate to="/main" />}
       <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
 
       <div className="user-registration-wrapper">
