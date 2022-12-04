@@ -2,6 +2,8 @@ $backgroundColorBody: rgb(221, 239, 255);
 $darkColor: #000000;
 $primaryColor: #1976d2;
 $errorColor: red;
+$lightColor: #ffffff;
+$approveColor: green;
 
 @mixin flex ($justify: center, $align: stretch) {
   display: flex;

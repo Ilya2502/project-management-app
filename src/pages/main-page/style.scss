@@ -42,3 +42,10 @@
     }
   }
 }
+
+.boards-wrapper {
+  padding-top: 10px;
+  @include flex(flex-start);
+  flex-wrap: wrap;
+  gap: 15px;
+}

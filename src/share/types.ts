@@ -1,3 +1,5 @@
+import { BoardResponseType } from 'components/service/boardService/types';
+
 export interface ToastMessageProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +15,9 @@ export interface RootState {
   user: {
     userToken: string | null;
     userLogin: string | null;
+  };
+  board: {
+    boards: BoardResponseType[] | [];
   };
 }
 

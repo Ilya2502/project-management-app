@@ -1,0 +1,36 @@
+.board-wrapper {
+  width: 200px;
+  height: 160px;
+  border: 2px solid $primaryColor;
+  border-radius: 10px;
+  @include flex(space-between, center);
+  flex-direction: column;
+
+  .board-title {
+    text-align: center;
+  }
+
+  .board-buttons {
+    margin-bottom: 10px;
+    @include flex();
+    gap: 10px;
+
+    .board-buttons__delete,
+    .board-buttons__go-board {
+      outline: none;
+      border: 1px solid $darkColor;
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    .board-buttons__delete {
+      color: $lightColor;
+      background: $errorColor;
+    }
+
+    .board-buttons__go-board {
+      color: $lightColor;
+      background: $approveColor;
+    }
+  }
+}

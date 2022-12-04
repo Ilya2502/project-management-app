@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalWindow from 'components/UI/modal-window/modal-window';
 import { ICreateBoard } from './types';
+import { getBoards } from 'features/board/board-slice';
+import Board from 'components/board/board';
+import { RootState } from 'share/types';
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  const allBoards = useSelector((state: RootState) => state.board.boards);
   const [openModalWindow, setOpenModalWindow] = useState(false);
 
   const {
@@ -13,6 +19,10 @@ const MainPage = () => {
     formState: { errors },
     reset,
   } = useForm<ICreateBoard>();
+
+  useEffect(() => {
+    dispatch(getBoards());
+  }, [dispatch]);
 
   const modalWindowHandler = () => {
     openModalWindow ? setOpenModalWindow(false) : setOpenModalWindow(true);
@@ -94,6 +104,13 @@ const MainPage = () => {
       <Button onClick={modalWindowHandler} sx={{ mt: 2 }} variant="contained">
         Create Board
       </Button>
+      <div className="boards-wrapper">
+        {allBoards.length ? (
+          allBoards.map((board) => <Board key={board._id} title={board.title} />)
+        ) : (
+          <p className="boards-not-found">Boards not found</p>
+        )}
+      </div>
     </React.Fragment>
   );
 };
