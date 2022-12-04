@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalWindow from 'components/UI/modal-window/modal-window';
 import { ICreateBoard } from './types';
-import { getBoards } from 'features/board/board-slice';
+import { fetchAllBoards } from 'features/board/board-slice';
 import Board from 'components/board/board';
 import { RootState } from 'share/types';
 
@@ -21,7 +21,7 @@ const MainPage = () => {
   } = useForm<ICreateBoard>();
 
   useEffect(() => {
-    dispatch(getBoards());
+    dispatch(fetchAllBoards());
   }, [dispatch]);
 
   const modalWindowHandler = () => {
@@ -106,7 +106,7 @@ const MainPage = () => {
       </Button>
       <div className="boards-wrapper">
         {allBoards.length ? (
-          allBoards.map((board) => <Board key={board._id} title={board.title} />)
+          allBoards.map((board) => <Board key={board._id} title={board.title} _id={board._id} />)
         ) : (
           <p className="boards-not-found">Boards not found</p>
         )}

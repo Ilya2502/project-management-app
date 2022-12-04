@@ -1,6 +1,6 @@
 .board-wrapper {
   width: 200px;
-  height: 160px;
+  min-height: 180px;
   border: 2px solid $primaryColor;
   border-radius: 10px;
   @include flex(space-between, center);
@@ -12,15 +12,24 @@
 
   .board-buttons {
     margin-bottom: 10px;
-    @include flex();
+    @include flex(space-between);
     gap: 10px;
+    flex-wrap: wrap;
+    padding: 0 10px;
 
     .board-buttons__delete,
-    .board-buttons__go-board {
+    .board-buttons__go-board,
+    .board-buttons__update {
       outline: none;
       border: 1px solid $darkColor;
       border-radius: 4px;
-      padding: 2px;
+      padding: 2px 5px;
+    }
+
+    .board-buttons__go-board {
+      color: $lightColor;
+      background: $approveColor;
+      width: 100%;
     }
 
     .board-buttons__delete {
@@ -28,9 +37,9 @@
       background: $errorColor;
     }
 
-    .board-buttons__go-board {
+    .board-buttons__update {
       color: $lightColor;
-      background: $approveColor;
+      background: $updateColor;
     }
   }
 }
