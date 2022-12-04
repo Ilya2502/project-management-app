@@ -2,7 +2,7 @@ import { RequestType } from './types';
 import { getLocalStorageItem } from '../localStorageService/localStorageService';
 import { userSignOut } from '../userService/userService';
 import { setUserToken } from 'features/user/user-slice';
-import { store } from '../../../store/store'
+import { store } from '../../../store/store';
 
 const baseUrl = `https://final-task-backend-production-6cf1.up.railway.app`;
 
