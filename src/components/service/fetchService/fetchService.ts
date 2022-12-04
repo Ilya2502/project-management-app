@@ -1,5 +1,8 @@
 import { RequestType } from './types';
 import { getLocalStorageItem } from '../localStorageService/localStorageService';
+import { userSignOut } from '../userService/userService';
+import { setUserToken } from 'features/user/user-slice';
+import { store } from '../../../store/store'
 
 const baseUrl = `https://final-task-backend-production-6cf1.up.railway.app`;
 
@@ -48,6 +51,10 @@ const typedFetch = async <T, B>(
   const requestConfig = getRequestConfig(request, body);
   const response = await fetch(`${url}`, requestConfig);
   const data = await response.json();
+  if (data.message === 'Invalid token') {
+    userSignOut();
+    store.dispatch(setUserToken(null));
+  }
   return data;
 };
 
