@@ -15,7 +15,6 @@ const createBoard = async (title: string, users = ['']) => {
 const getAllBoards = async () => {
   const endPoint = `boards`;
   const data = await getData<BoardResponseType[]>(endPoint);
-  console.log(data);
   return data;
 };
 
