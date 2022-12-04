@@ -6,3 +6,8 @@ export interface IBoardData {
   title: string;
   description?: string;
 }
+
+export interface IUpdateBoard {
+  title: string;
+  description: string;
+}
