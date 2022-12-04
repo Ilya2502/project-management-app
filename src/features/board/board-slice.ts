@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { boardService } from '../../components/service/boardService/boardService';
 import { BoardResponseType } from '../../components/service/boardService/types';
 
-const { getAllBoards, deleteBoardById } = boardService;
+const { getAllBoards, deleteBoardById, createBoard } = boardService;
 
 const boardState: BoardResponseType = {
   _id: '',
@@ -28,6 +28,14 @@ export const removeBoardById = createAsyncThunk<string, string>(
   }
 );
 
+export const createNewBoard = createAsyncThunk<BoardResponseType | null, string>(
+  'board/createNewBoard',
+  async (title) => {
+    const response = await createBoard(title);
+    return response;
+  }
+);
+
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
@@ -37,8 +45,18 @@ export const boardSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // builder.addCase(fetchAllBoards.fulfilled, (state, action) => {
+    //   state.board = action.payload;
+    // });
+
     builder.addCase(removeBoardById.fulfilled, (state, action) => {
       state.boards = state.boards.filter((board) => board._id !== action.payload);
+    });
+
+    builder.addCase(createNewBoard.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.boards.push(action.payload);
+      }
     });
   },
 });

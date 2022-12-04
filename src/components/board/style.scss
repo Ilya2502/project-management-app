@@ -8,6 +8,16 @@
 
   .board-title {
     text-align: center;
+    margin-bottom: 0px;
+  }
+  .board-title,
+  .board-description {
+    text-align: center;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
   }
 
   .board-buttons {
