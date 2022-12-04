@@ -2,9 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { BoardProps } from './types';
 import { removeBoardById } from 'features/board/board-slice';
+import { AppDispatch } from 'store/store';
 
 const Board = (props: BoardProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { title, _id } = props;
 
   const deleteBoardHandler = (id: string) => {

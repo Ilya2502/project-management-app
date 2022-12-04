@@ -34,19 +34,22 @@
 
     .user-edit-form__submit {
       margin-top: 15px;
-      padding: 0;
-      width: 100%;
+      background: $updateColor;
     }
   }
 
   .user-edit-delete {
-    width: 100%;
     margin-top: 50px;
-    color: $backgroundColorBody;
     background-color: $errorColor;
-    outline: none;
-    border: none;
-    padding: 5px;
-    border-radius: 4px;
   }
 }
+
+    .user-edit-form__submit,
+    .user-edit-delete {
+      border: 1px solid $darkColor;
+      outline: none;
+      padding: 5px;
+      border-radius: 4px;
+      color: $lightColor;
+      width: 100%;
+    }

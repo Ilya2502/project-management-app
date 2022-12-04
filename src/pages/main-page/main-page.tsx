@@ -7,9 +7,10 @@ import { ICreateBoard } from './types';
 import { fetchAllBoards } from 'features/board/board-slice';
 import Board from 'components/board/board';
 import { RootState } from 'share/types';
+import { AppDispatch } from 'store/store';
 
 const MainPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const allBoards = useSelector((state: RootState) => state.board.boards);
   const [openModalWindow, setOpenModalWindow] = useState(false);
 

@@ -37,10 +37,6 @@ export const boardSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllBoards.fulfilled, (state, action) => {
-      state.board = action.payload;
-    });
-
     builder.addCase(removeBoardById.fulfilled, (state, action) => {
       state.boards = state.boards.filter((board) => board._id !== action.payload);
     });
