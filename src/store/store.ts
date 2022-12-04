@@ -8,3 +8,5 @@ export const store = configureStore({
     board: boardSlice,
   },
 });
+
+export type AppDispatch = typeof store.dispatch;

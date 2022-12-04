@@ -35,9 +35,7 @@ const getBoardsByUserId = async () => {
 
 const deleteBoardById = async (boardId: string) => {
   const endPoint = `boards/${boardId}`;
-  const data = await deleteData(endPoint);
-  console.log(data);
-  return data;
+  await deleteData(endPoint);
 };
 
 const updateBoardById = async (boardId: string, title: string, users = ['']) => {

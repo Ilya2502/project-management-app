@@ -4,6 +4,7 @@ $primaryColor: #1976d2;
 $errorColor: red;
 $lightColor: #ffffff;
 $approveColor: green;
+$updateColor: orange;
 
 @mixin flex ($justify: center, $align: stretch) {
   display: flex;
