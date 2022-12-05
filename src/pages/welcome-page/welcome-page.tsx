@@ -42,7 +42,11 @@ const WelcomePage = () => {
             <div className="teammates-person__about">
               <h3 className="teammates-person__name">Ilya</h3>
               <p className="teammates-person__position">Team Lead</p>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.linkedin.com/in/iliia-haurychkou-92724b244/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 LinkedIn
               </a>
             </div>

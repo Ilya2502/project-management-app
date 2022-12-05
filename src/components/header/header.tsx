@@ -56,7 +56,7 @@ const Header = () => {
     dispatch(setUserToken(null));
   };
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <ElevationScroll>

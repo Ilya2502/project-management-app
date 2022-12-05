@@ -1,6 +1,5 @@
 {
-    "text": "Some text",
-    "hello": "Hello World",
     "kanban": "Kanban",
-    "lang": "Lang"
+    "lang": "Lang",
+    "goBoard": "Go to board"
 }
