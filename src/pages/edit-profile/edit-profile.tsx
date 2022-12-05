@@ -10,6 +10,7 @@ import { ToastMessageSettings } from 'share/types';
 import { RootState } from 'share/types';
 import { setUserLogin, setUserToken } from 'features/user/user-slice';
 import ModalWindow from 'components/UI/modal-window/modal-window';
+import { useTranslation } from 'react-i18next';
 
 const { updateUserById, deleteUserById } = userService;
 
@@ -58,31 +59,35 @@ const EditProfile = () => {
     setOpenModalWindowDeleteButton(false);
   };
 
+  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
       <div className="user-edit-wrapper">
-        <h2 className="user-edit-login">{userLogin} edit profile</h2>
+        <h2 className="user-edit-login">
+          {userLogin} {t('EditProfile').toLowerCase()}
+        </h2>
         <form className="user-edit-form" onSubmit={handleSubmit(onSubmit)}>
           <label className="user-edit-form__label" htmlFor="firstName">
-            Name:
+            {`${t('Name')}:`}
             <input
               className="user-edit-form__input"
               type="text"
-              placeholder="Name"
+              placeholder={`${t('Name')}`}
               {...register('firstName', {
-                required: 'Input your name',
+                required: `${t('inputYourName')}`,
                 minLength: {
                   value: 2,
-                  message: 'minimum of 2 characters',
+                  message: `${t('min2Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{2,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -101,24 +106,24 @@ const EditProfile = () => {
           </label>
 
           <label className="user-edit-form__label" htmlFor="edit">
-            Login:
+            {`${t('Login')}:`}
             <input
               className="user-edit-form__input"
               type="text"
-              placeholder="Login"
+              placeholder={`${t('Login')}`}
               {...register('login', {
-                required: 'Input your login',
+                required: `${t('inputYourLogin')}`,
                 minLength: {
                   value: 2,
-                  message: 'minimum of 2 characters',
+                  message: `${t('min2Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{2,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -137,24 +142,24 @@ const EditProfile = () => {
           </label>
 
           <label className="user-edit-form__label" htmlFor="password">
-            Password:
+            {`${t('password')}:`}
             <input
               className="user-edit-form__input"
               type="password"
-              placeholder="New password"
+              placeholder={`${t('New')} ${t('password')}`}
               {...register('password', {
-                required: 'Input your new password',
+                required: `${t('InputNewPassword')}`,
                 minLength: {
                   value: 6,
-                  message: 'minimum of 6 characters',
+                  message: `${t('min6Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{6,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -172,22 +177,24 @@ const EditProfile = () => {
             )}
           </label>
 
-          <input className="user-edit-form__submit" type="submit" value={'Update profile'} />
+          <input className="user-edit-form__submit" type="submit" value={`${t('UpdateProfile')}`} />
         </form>
         <button onClick={() => setOpenModalWindowDeleteButton(true)} className="user-edit-delete">
-          Delete user
+          {t('DeleteUser')}
         </button>
       </div>
       <ModalWindow open={openModalWindowDeleteButton} setOpen={setOpenModalWindowDeleteButton}>
         <Grid container direction="column" justifyContent="space-evenly" alignItems="center">
-          <h3>Delete {userLogin}?</h3>
+          <h3>
+            {t('delete')} {userLogin}?
+          </h3>
           <ButtonGroup>
             <Button style={{ color: 'red' }} onClick={() => setOpenModalWindowDeleteButton(false)}>
-              No
+              {t('no')}
             </Button>
             <NavLink style={{ textDecoration: 'none' }} to="/">
               <Button style={{ color: 'green' }} onClick={deleteUser}>
-                Yes
+                {t('yes')}
               </Button>
             </NavLink>
           </ButtonGroup>

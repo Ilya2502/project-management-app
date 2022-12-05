@@ -17,6 +17,7 @@ import { ElevationScrollProps } from './types';
 import { setUserToken } from 'features/user/user-slice';
 import { userSignOut } from '../service/userService/userService';
 import { RootState } from 'share/types';
+import { useTranslation } from 'react-i18next';
 
 const ElevationScroll = (props: ElevationScrollProps) => {
   const { children, window } = props;
@@ -55,6 +56,8 @@ const Header = () => {
     dispatch(setUserToken(null));
   };
 
+  const { t } = useTranslation();
+
   return (
     <ElevationScroll>
       <AppBar position="sticky" sx={{ pt: 1, pb: 1 }}>
@@ -70,30 +73,30 @@ const Header = () => {
           </IconButton>
           <Typography variant="h6" color="inherit" component="div" className={title}>
             <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">
-              Kanban
+              {t('kanban')}
             </NavLink>
           </Typography>
           {isUserLogin ? (
             <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/edit-profile">
-                <Button sx={{ mr: 1, color: 'white' }}>Edit profile</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('EditProfile')}</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/main">
-                <Button sx={{ mr: 1, color: 'white' }}>Boards</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('Boards')}</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <Button onClick={signOutHandler} sx={{ mr: 1, color: 'white' }}>
-                  Sing Out
+                  {t('SignOut')}
                 </Button>
               </NavLink>
             </ButtonGroup>
           ) : (
             <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
-                <Button sx={{ mr: 1, color: 'white' }}>Sing In</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('SignIn')}</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/registration">
-                <Button sx={{ mr: 1, color: 'white' }}>Sing Up</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('SignUp')}</Button>
               </NavLink>
             </ButtonGroup>
           )}

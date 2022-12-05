@@ -9,6 +9,7 @@ import { ToastMessageSettings } from 'share/types';
 import { getLocalStorageItem } from 'components/service/localStorageService/localStorageService';
 import { setUserToken, setUserLogin } from 'features/user/user-slice';
 import { RootState } from 'share/types';
+import { useTranslation } from 'react-i18next';
 
 const { loginUser } = userService;
 
@@ -52,32 +53,34 @@ const Userlogin = () => {
     reset();
   };
 
+  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
       {isUserLogin && <Navigate to="/main" />}
       <div className="user-login-wrapper">
-        <h2 className="user-login-header">Sign In</h2>
+        <h2 className="user-login-header">{t('SignIn')}</h2>
         <form className="user-login-form" onSubmit={handleSubmit(onSubmit)}>
           <label className="user-login-form__label" htmlFor="login">
-            Login:
+            {`${t('Login')}:`}
             <input
               className="user-login-form__input"
               type="text"
-              placeholder="Login"
+              placeholder={`${t('Login')}`}
               {...register('login', {
-                required: 'Input your login',
+                required: `${t('inputYourLogin')}`,
                 minLength: {
                   value: 2,
-                  message: 'minimum of 2 characters',
+                  message: `${t('min2Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{2,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -96,24 +99,24 @@ const Userlogin = () => {
           </label>
 
           <label className="user-login-form__label" htmlFor="password">
-            Password:
+            {`${t('password')}:`}
             <input
               className="user-login-form__input"
               type="password"
-              placeholder="Password"
+              placeholder={`${t('password')}`}
               {...register('password', {
-                required: 'Input your password',
+                required: `${t('InputYourPassword')}`,
                 minLength: {
                   value: 6,
-                  message: 'minimum of 6 characters',
+                  message: `${t('min6Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{6,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -131,7 +134,7 @@ const Userlogin = () => {
             )}
           </label>
 
-          <input className="user-login-form__submit" type="submit" value={'Submit'} />
+          <input className="user-login-form__submit" type="submit" value={`${t('Submit')}`} />
         </form>
       </div>
     </React.Fragment>
