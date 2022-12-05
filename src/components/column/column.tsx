@@ -96,14 +96,14 @@ const Column = (props: ColumnResponseType) => {
             <input
               className="update-column-form__submit"
               type="submit"
-              value={`${t('updatecolumn')}`}
+              value={`${t('updateСolumn')}`}
             />
           </form>
         </div>
       </ModalWindow>
       <ModalWindow open={openModalWindowDeleteButton} setOpen={setOpenModalWindowDeleteButton}>
         <Grid container direction="column" justifyContent="space-evenly" alignItems="center">
-          <h3>{`${t('deletecolumn')}?`}</h3>
+          <h3>{`${t('deleteСolumn')}?`}</h3>
           <ButtonGroup>
             <Button style={{ color: 'red' }} onClick={() => setOpenModalWindowDeleteButton(false)}>
               {t('no')}
