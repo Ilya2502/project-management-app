@@ -1,0 +1,105 @@
+.column-wrapper {
+  width: 200px;
+  min-height: 190px;
+  border: 2px solid $primaryColor;
+  border-radius: 10px;
+  @include flex(flex-start, center);
+  flex-direction: column;
+
+ .column-wrapper-header {
+  height: 80px;
+  border-bottom: 2px solid $primaryColor;
+
+   .column-title {
+     text-align: center;
+     margin: 5px 0px;
+   }
+   .column-title,
+   .column-description {
+     text-align: center;
+     width: 180px;
+     white-space: nowrap;
+     overflow: hidden;
+     padding: 5px;
+     text-overflow: ellipsis;
+   }
+ 
+   .column-buttons {
+     margin-top: 10px;
+     @include flex(space-between);
+     gap: 10px;
+     flex-wrap: wrap;
+     padding: 0 10px;
+ 
+     .column-buttons__delete,
+     .column-buttons__go-column,
+     .column-buttons__update {
+       outline: none;
+       border: 1px solid $darkColor;
+       border-radius: 4px;
+       padding: 2px 5px;
+     }
+ 
+     .column-buttons__go-column {
+       color: $lightColor;
+       background: $approveColor;
+       width: 180px;
+     }
+ 
+     .column-buttons__delete {
+       color: $lightColor;
+       background: $errorColor;
+     }
+ 
+     .column-buttons__update {
+       color: $lightColor;
+       background: $updateColor;
+     }
+   }
+ }
+}
+
+.update-column-wrapper {
+  margin: 0 auto;
+  width: 250px;
+  height: 100px;
+
+  .update-column-header {
+    text-align: center
+  }
+
+  .update-column-form {
+    @include flex();
+    flex-direction: column;
+    gap: 20px;
+
+    .update-column-form__label {
+      position: relative;
+      .update-column-form__input {
+        outline: none;
+        width: 240px;
+      }
+      
+      .update-column-form__textarea {
+        width: 242px;
+        height: 150px;
+        outline: none;
+        resize: none;
+      }
+
+      .error {
+        display: inline-block;
+        color: $errorColor;
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+      }
+    }
+
+    .update-column-form__submit {
+      margin-top: 15px 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}

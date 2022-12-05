@@ -30,8 +30,7 @@ const getColumnsByUserId = async () => {
 
 const deleteColumnById = async (boardId: string, columnId: string) => {
   const endPoint = `boards/${boardId}/columns/${columnId}`;
-  const data = await deleteData(endPoint);
-  return data;
+  await deleteData(endPoint);
 };
 
 const updateColumnById = async (

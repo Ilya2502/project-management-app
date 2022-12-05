@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Button, ButtonGroup, Grid } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 import { BoardProps, IBoardData, IUpdateBoard } from './types';
 import { removeBoardById, updateCurrentBoard } from 'features/board/board-slice';
 import { AppDispatch } from 'store/store';
@@ -59,7 +60,9 @@ const Board = (props: BoardProps) => {
           </Fragment>
         )}
         <div className="board-buttons">
-          <button className="board-buttons__go-board">{t('goBoard')}</button>
+          <NavLink to={_id}>
+            <button className="board-buttons__go-board">{t('goBoard')}</button>
+          </NavLink>
           <button
             className="board-buttons__delete"
             onClick={() => setOpenModalWindowDeleteButton(true)}
