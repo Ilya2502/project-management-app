@@ -17,6 +17,7 @@ import { ElevationScrollProps } from './types';
 import { setUserToken } from 'features/user/user-slice';
 import { userSignOut } from '../service/userService/userService';
 import { RootState } from 'share/types';
+import { useTranslation } from 'react-i18next';
 
 const ElevationScroll = (props: ElevationScrollProps) => {
   const { children, window } = props;
@@ -55,6 +56,8 @@ const Header = () => {
     dispatch(setUserToken(null));
   };
 
+  const { t, i18n } = useTranslation();
+
   return (
     <ElevationScroll>
       <AppBar position="sticky" sx={{ pt: 1, pb: 1 }}>
@@ -70,7 +73,7 @@ const Header = () => {
           </IconButton>
           <Typography variant="h6" color="inherit" component="div" className={title}>
             <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">
-              Kanban
+              {t('kanban')}
             </NavLink>
           </Typography>
           {isUserLogin ? (

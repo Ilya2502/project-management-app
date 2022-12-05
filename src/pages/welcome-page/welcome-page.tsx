@@ -1,11 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const WelcomePage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="welcome-page-wrapper">
       <div className="welcome-page">
         <div className="welcome-page__title">
-          <h1>Kanban</h1>
+          <h1>{t('kanban')}</h1>
           <p>
             Our app is designed to help you get more done. We are constantly updating our software
             to make it easier and easier for your teams to complete their tasks, and for you to keep
