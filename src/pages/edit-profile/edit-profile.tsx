@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Button, ButtonGroup, Grid } from '@mui/material';
 import { IUserEdit } from './types';
 import { userService } from 'components/service/userService/userService';
 import ToastMessage from 'components/UI/toast-message/toast-message';
 import { ToastMessageSettings } from 'share/types';
 import { RootState } from 'share/types';
 import { setUserLogin, setUserToken } from 'features/user/user-slice';
+import ModalWindow from 'components/UI/modal-window/modal-window';
 
 const { updateUserById, deleteUserById } = userService;
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state: RootState) => state.user.userLogin);
+  const [openModalWindowDeleteButton, setOpenModalWindowDeleteButton] = useState(false);
   const {
     register,
     handleSubmit,
@@ -52,6 +55,7 @@ const EditProfile = () => {
     deleteUserById();
     dispatch(setUserLogin(null));
     dispatch(setUserToken(null));
+    setOpenModalWindowDeleteButton(false);
   };
 
   return (
@@ -170,12 +174,25 @@ const EditProfile = () => {
 
           <input className="user-edit-form__submit" type="submit" value={'Update profile'} />
         </form>
-        <NavLink to="/">
-          <button onClick={deleteUser} className="user-edit-delete">
-            Delete user
-          </button>
-        </NavLink>
+        <button onClick={() => setOpenModalWindowDeleteButton(true)} className="user-edit-delete">
+          Delete user
+        </button>
       </div>
+      <ModalWindow open={openModalWindowDeleteButton} setOpen={setOpenModalWindowDeleteButton}>
+        <Grid container direction="column" justifyContent="space-evenly" alignItems="center">
+          <h3>Delete {userLogin}?</h3>
+          <ButtonGroup>
+            <Button style={{ color: 'red' }} onClick={() => setOpenModalWindowDeleteButton(false)}>
+              No
+            </Button>
+            <NavLink style={{ textDecoration: 'none' }} to="/">
+              <Button style={{ color: 'green' }} onClick={deleteUser}>
+                Yes
+              </Button>
+            </NavLink>
+          </ButtonGroup>
+        </Grid>
+      </ModalWindow>
     </React.Fragment>
   );
 };

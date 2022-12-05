@@ -1,6 +1,6 @@
 .board-wrapper {
   width: 200px;
-  min-height: 180px;
+  min-height: 190px;
   border: 2px solid $primaryColor;
   border-radius: 10px;
   @include flex(space-between, center);

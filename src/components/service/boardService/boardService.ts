@@ -41,7 +41,6 @@ const updateBoardById = async (boardId: string, title: string, users = ['']) => 
   const owner = getLocalStorageUserId();
   const body = { title, owner, users };
   const data = await putData<BoardResponseType, NewBoardType>(endPoint, body);
-  console.log(data);
   return data;
 };
 

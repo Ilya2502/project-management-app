@@ -109,7 +109,7 @@ const MainPage = () => {
         {allBoards.length ? (
           allBoards.map((board) => <Board key={board._id} title={board.title} _id={board._id} />)
         ) : (
-          <p className="boards-not-found">Boards not found</p>
+          <p className="boards-not-found">Boards not found...</p>
         )}
       </div>
     </React.Fragment>
