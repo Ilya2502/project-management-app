@@ -7,6 +7,7 @@ import { userService } from 'components/service/userService/userService';
 import ToastMessage from 'components/UI/toast-message/toast-message';
 import { ToastMessageSettings } from 'share/types';
 import { RootState } from 'share/types';
+import { useTranslation } from 'react-i18next';
 
 const { createUser } = userService;
 
@@ -45,33 +46,35 @@ const RegistrationUser = () => {
     reset();
   };
 
+  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       {isUserLogin && <Navigate to="/main" />}
       <ToastMessage open={toastOpen} setOpen={setToastOpen} message={toastMessage} />
 
       <div className="user-registration-wrapper">
-        <h2 className="user-registration-header">Sign Up</h2>
+        <h2 className="user-registration-header">{t('SignUp')}</h2>
         <form className="user-registration-form" onSubmit={handleSubmit(onSubmit)}>
           <label className="user-registration-form__label" htmlFor="firstName">
-            Name:
+            {`${t('Name')}:`}
             <input
               className="user-registration-form__input"
               type="text"
-              placeholder="Name"
+              placeholder={`${t('Name')}`}
               {...register('firstName', {
-                required: 'Input your name',
+                required: `${t('inputYourName')}`,
                 minLength: {
                   value: 2,
-                  message: 'minimum of 2 characters',
+                  message: `${t('min2Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{2,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -90,24 +93,24 @@ const RegistrationUser = () => {
           </label>
 
           <label className="user-registration-form__label" htmlFor="registration">
-            Login:
+            {`${t('Login')}:`}
             <input
               className="user-registration-form__input"
               type="text"
-              placeholder="Login"
+              placeholder={`${t('Login')}`}
               {...register('login', {
-                required: 'Input your login',
+                required: `${t('inputYourLogin')}`,
                 minLength: {
                   value: 2,
-                  message: 'minimum of 2 characters',
+                  message: `${t('min2Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{2,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -126,24 +129,24 @@ const RegistrationUser = () => {
           </label>
 
           <label className="user-registration-form__label" htmlFor="password">
-            Password:
+            {`${t('password')}:`}
             <input
               className="user-registration-form__input"
               type="password"
-              placeholder="Password"
+              placeholder={`${t('password')}`}
               {...register('password', {
-                required: 'Input your password',
+                required: `${t('InputNewPassword')}`,
                 minLength: {
                   value: 6,
-                  message: 'minimum of 6 characters',
+                  message: `${t('min6Char')}`,
                 },
                 maxLength: {
                   value: 16,
-                  message: 'maximum of 16 characters',
+                  message: `${t('max16Char')}`,
                 },
                 pattern: {
                   value: /^[A-Za-z0-9_-]{6,16}$/,
-                  message: 'latin characters, no spaces',
+                  message: `${t('latinCharNoSpaces')}`,
                 },
               })}
             />
@@ -161,7 +164,11 @@ const RegistrationUser = () => {
             )}
           </label>
 
-          <input className="user-registration-form__submit" type="submit" value={'Submit'} />
+          <input
+            className="user-registration-form__submit"
+            type="submit"
+            value={`${t('Submit')}`}
+          />
         </form>
       </div>
     </React.Fragment>

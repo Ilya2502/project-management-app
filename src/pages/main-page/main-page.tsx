@@ -8,6 +8,7 @@ import { fetchAllBoards, createNewBoard } from 'features/board/board-slice';
 import Board from 'components/board/board';
 import { RootState } from 'share/types';
 import { AppDispatch } from 'store/store';
+import { useTranslation } from 'react-i18next';
 
 const MainPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,26 +36,28 @@ const MainPage = () => {
     modalWindowHandler();
   };
 
+  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       <ModalWindow open={openModalWindow} setOpen={setOpenModalWindow}>
         <div className="create-board-wrapper">
           <form className="create-board-form" onSubmit={handleSubmit(onSubmit)}>
             <label className="create-board-form__label" htmlFor="title">
-              Title:
+              {`${t('Title')}:`}
               <input
                 className="create-board-form__input"
                 type="text"
-                placeholder="Title"
+                placeholder={`${t('Title')}`}
                 {...register('title', {
-                  required: 'Input your title',
+                  required: `${t('inputYourTitle')}:`,
                   minLength: {
                     value: 4,
-                    message: 'minimum of 4 characters',
+                    message: `${t('min4Char')}:`,
                   },
                   maxLength: {
                     value: 40,
-                    message: 'maximum of 40 characters',
+                    message: `${t('max40Char')}:`,
                   },
                 })}
               />
@@ -70,19 +73,19 @@ const MainPage = () => {
             </label>
 
             <label className="create-board-form__label" htmlFor="description">
-              Description:
+              {`${t('Description')}:`}
               <textarea
                 className="create-board-form__textarea"
-                placeholder="Description"
+                placeholder={`${t('Description')}`}
                 {...register('description', {
-                  required: 'Input your description',
+                  required: `${t('inputYourDescription')}`,
                   minLength: {
                     value: 6,
-                    message: 'minimum of 6 characters',
+                    message: `${t('min6Char')}:`,
                   },
                   maxLength: {
                     value: 200,
-                    message: 'maximum of 200 characters',
+                    message: `${t('max200Char')}:`,
                   },
                 })}
               />
@@ -97,19 +100,23 @@ const MainPage = () => {
               )}
             </label>
 
-            <input className="create-board-form__submit" type="submit" value={'Create Board'} />
+            <input
+              className="create-board-form__submit"
+              type="submit"
+              value={`${t('CreateBoard')}`}
+            />
           </form>
         </div>
       </ModalWindow>
 
       <Button onClick={modalWindowHandler} sx={{ mt: 2 }} variant="contained">
-        Create Board
+        {t('CreateBoard')}
       </Button>
       <div className="boards-wrapper">
         {allBoards.length ? (
           allBoards.map((board) => <Board key={board._id} title={board.title} _id={board._id} />)
         ) : (
-          <p className="boards-not-found">Boards not found...</p>
+          <p className="boards-not-found">{t('BoardsNotFound')}</p>
         )}
       </div>
     </React.Fragment>

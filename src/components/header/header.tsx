@@ -79,24 +79,24 @@ const Header = () => {
           {isUserLogin ? (
             <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/edit-profile">
-                <Button sx={{ mr: 1, color: 'white' }}>Edit profile</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('EditProfile')}</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/main">
-                <Button sx={{ mr: 1, color: 'white' }}>Boards</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('Boards')}</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/">
                 <Button onClick={signOutHandler} sx={{ mr: 1, color: 'white' }}>
-                  Sing Out
+                  {t('SignOut')}
                 </Button>
               </NavLink>
             </ButtonGroup>
           ) : (
             <ButtonGroup color="inherit" variant="outlined" aria-label="outlined button group">
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
-                <Button sx={{ mr: 1, color: 'white' }}>Sing In</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('SignIn')}</Button>
               </NavLink>
               <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/registration">
-                <Button sx={{ mr: 1, color: 'white' }}>Sing Up</Button>
+                <Button sx={{ mr: 1, color: 'white' }}>{t('SignUp')}</Button>
               </NavLink>
             </ButtonGroup>
           )}

@@ -64,10 +64,10 @@ const Board = (props: BoardProps) => {
             className="board-buttons__delete"
             onClick={() => setOpenModalWindowDeleteButton(true)}
           >
-            Delete
+            {t('delete')}
           </button>
           <button className="board-buttons__update" onClick={modalWindowHandler}>
-            Update
+            {t('update')}
           </button>
         </div>
       </div>
@@ -76,20 +76,20 @@ const Board = (props: BoardProps) => {
         <div className="update-board-wrapper">
           <form className="update-board-form" onSubmit={handleSubmit(onSubmit)}>
             <label className="update-board-form__label" htmlFor="title">
-              Update title:
+              {t('updateTitle')}
               <input
                 className="update-board-form__input"
                 type="text"
                 placeholder={boardData.title}
                 {...register('title', {
-                  required: 'Input your title',
+                  required: `${t('inputYourTitle')}`,
                   minLength: {
                     value: 4,
-                    message: 'minimum of 4 characters',
+                    message: `${t('min4Char')}`,
                   },
                   maxLength: {
                     value: 40,
-                    message: 'maximum of 40 characters',
+                    message: `${t('max40Char')}`,
                   },
                 })}
               />
@@ -105,19 +105,19 @@ const Board = (props: BoardProps) => {
             </label>
 
             <label className="update-board-form__label" htmlFor="description">
-              Update description:
+              {t('updateDescription')}
               <textarea
                 className="update-board-form__textarea"
                 placeholder={boardData.description}
                 {...register('description', {
-                  required: 'Input your description',
+                  required: `${t('inputYourDescription')}`,
                   minLength: {
                     value: 6,
-                    message: 'minimum of 6 characters',
+                    message: `${t('min6Char')}`,
                   },
                   maxLength: {
                     value: 200,
-                    message: 'maximum of 200 characters',
+                    message: `${t('max200Char')}`,
                   },
                 })}
               />
@@ -132,19 +132,23 @@ const Board = (props: BoardProps) => {
               )}
             </label>
 
-            <input className="update-board-form__submit" type="submit" value={'Update Board'} />
+            <input
+              className="update-board-form__submit"
+              type="submit"
+              value={`${t('updateBoard')}`}
+            />
           </form>
         </div>
       </ModalWindow>
       <ModalWindow open={openModalWindowDeleteButton} setOpen={setOpenModalWindowDeleteButton}>
         <Grid container direction="column" justifyContent="space-evenly" alignItems="center">
-          <h3>Delete board?</h3>
+          <h3>{`${t('deleteBoard')}?`}</h3>
           <ButtonGroup>
             <Button style={{ color: 'red' }} onClick={() => setOpenModalWindowDeleteButton(false)}>
-              No
+              {t('no')}
             </Button>
             <Button style={{ color: 'green' }} onClick={() => deleteBoardHandler(_id)}>
-              Yes
+              {t('yes')}
             </Button>
           </ButtonGroup>
         </Grid>
