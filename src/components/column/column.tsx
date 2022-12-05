@@ -86,7 +86,7 @@ const Column = (props: ColumnResponseType) => {
               {t('delete')}
             </button>
             <button className="column-buttons__create-task" onClick={modalWindowHandler}>
-              Create task
+              {t('CreateTask')}
             </button>
           </div>
           {!changeTitle ? (
@@ -95,7 +95,7 @@ const Column = (props: ColumnResponseType) => {
             </h3>
           ) : (
             <div className="update-title-field">
-              <input placeholder="change title" onChange={(e) => inputHandlerTitle(e)} />
+              <input placeholder={`${t('changeTitle')}`} onChange={(e) => inputHandlerTitle(e)} />
               <button onClick={changeTitileHandler}>✔</button>
               <button onClick={() => setChangeTitle(false)}>✖</button>
             </div>
@@ -117,7 +117,7 @@ const Column = (props: ColumnResponseType) => {
           ))
         ) : (
           )} */}
-        <p className="tasks-not-found">Tasks not found</p>
+        <p className="tasks-not-found">{t('tasksNotFound')}</p>
       </div>
 
       <ModalWindow open={openModalWindow} setOpen={setOpenModalWindow}>
@@ -180,7 +180,11 @@ const Column = (props: ColumnResponseType) => {
               )}
             </label>
 
-            <input className="update-column-form__submit" type="submit" value={'Create Task'} />
+            <input
+              className="update-column-form__submit"
+              type="submit"
+              value={`${t('CreateTask')}`}
+            />
           </form>
         </div>
       </ModalWindow>

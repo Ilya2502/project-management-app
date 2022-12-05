@@ -52,5 +52,7 @@
     "CreateTask": "Создать задачу",
     "columnsNotFound": "Колонки не найдены",
     "updateСolumn": "Обновить колонку",
-    "deleteСolumn": "Удалить колонку"
+    "deleteСolumn": "Удалить колонку",
+    "tasksNotFound": "Задач не найдено",
+    "changeTitle": "Изменить заголовок"
 }
