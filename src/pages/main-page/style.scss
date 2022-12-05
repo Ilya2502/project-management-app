@@ -1,0 +1,57 @@
+.create-board-wrapper {
+  margin: 0 auto;
+  width: 250px;
+  height: 290px;
+
+  .create-board-header {
+    text-align: center
+  }
+
+  .create-board-form {
+    @include flex();
+    flex-direction: column;
+    gap: 20px;
+
+    .create-board-form__label {
+      position: relative;
+      .create-board-form__input {
+        outline: none;
+        width: 240px;
+      }
+      
+      .create-board-form__textarea {
+        width: 242px;
+        height: 150px;
+        outline: none;
+        resize: none;
+      }
+
+      .error {
+        display: inline-block;
+        color: $errorColor;
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+      }
+    }
+
+    .create-board-form__submit {
+      margin-top: 15px 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}
+
+.boards-wrapper {
+  padding-top: 16px;
+  @include flex(flex-start);
+  flex-wrap: wrap;
+  gap: 15px;
+
+  .boards-not-found {
+    position: absolute;
+    font-size: 1.5rem;
+    left: calc(50vw - 100px);
+  }
+}

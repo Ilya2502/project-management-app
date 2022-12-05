@@ -1,0 +1,94 @@
+.task-wrapper {
+  margin-top: 10px;
+  width: 90%;
+  border: 2px solid $primaryColor;
+  border-radius: 10px;
+  @include flex(flex-start, center);
+  padding: 0 4px;
+
+   .task-title,
+   .task-description {
+     text-align: center;
+     width: 180px;
+     white-space: nowrap;
+     overflow: hidden;
+     padding: 5px;
+     text-overflow: ellipsis;
+   }
+
+   .task-title {
+    text-align: left;
+    margin: 5px 0px;
+  }
+ 
+   .task-buttons {
+     @include flex(space-between);
+     gap: 10px;
+     padding: 0;
+ 
+     .task-buttons__delete,
+     .task-buttons__create-task {
+       outline: none;
+       border: 1px solid $darkColor;
+       padding: 2px 5px;
+       width: 30px;
+       height: 30px;
+       border-radius: 50%;
+     }
+ 
+     .task-buttons__delete {
+       color: $lightColor;
+       background: $errorColor;
+     }
+ 
+     .task-buttons__create-task {
+       color: $lightColor;
+       background: $updateColor;
+     }
+   }
+}
+
+.update-task-wrapper {
+  margin: 0 auto;
+  width: 250px;
+  height: 100px;
+
+  .update-task-header {
+    text-align: center
+  }
+
+  .update-task-form {
+    @include flex();
+    flex-direction: column;
+    gap: 20px;
+
+    .update-task-form__label {
+      position: relative;
+      .update-task-form__input {
+        outline: none;
+        width: 240px;
+      }
+      
+      .update-task-form__textarea {
+        width: 242px;
+        height: 150px;
+        outline: none;
+        resize: none;
+      }
+
+      .error {
+        display: inline-block;
+        color: $errorColor;
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+      }
+    }
+
+    .update-task-form__submit {
+      margin-top: 15px 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}

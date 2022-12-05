@@ -1,0 +1,24 @@
+$backgroundColorBody: rgb(221, 239, 255);
+$darkColor: #000000;
+$primaryColor: #1976d2;
+$errorColor: red;
+$lightColor: #ffffff;
+$approveColor: green;
+$updateColor: orange;
+
+@mixin flex ($justify: center, $align: stretch) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin font ($size: 16px, $weight: 400, $color: $darkColor) {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+$desktop-width: 1279px;
+$tablet-width: 767px;
+$mobile-width: 320px;

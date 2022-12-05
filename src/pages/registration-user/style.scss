@@ -1,0 +1,38 @@
+.user-registration-wrapper {
+  margin: 0 auto;
+  margin-top: calc(50vh - (230px / 2) - 60px);
+  width: 250px;
+  height: 230px;
+
+  .user-registration-header {
+    text-align: center
+  }
+
+  .user-registration-form {
+    @include flex();
+    flex-direction: column;
+    gap: 20px;
+
+    .user-registration-form__label {
+      position: relative;
+      .user-registration-form__input {
+        outline: none;
+        width: 240px;
+      }
+
+      .error {
+        display: inline-block;
+        color: $errorColor;
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+      }
+    }
+
+    .user-registration-form__submit {
+      margin-top: 15px;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}
