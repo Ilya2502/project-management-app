@@ -90,11 +90,6 @@ const BoardPage = () => {
       <Button onClick={modalWindowHandler} sx={{ mt: 2 }} variant="contained">
         {t('CreateСolumn')}
       </Button>
-      {allColumns.length > 0 && (
-        <Button onClick={modalWindowHandler} sx={{ mt: 2, ml: 2 }} variant="contained">
-          {t('CreateTask')}
-        </Button>
-      )}
       <div className="columns-wrapper">
         {allColumns.length ? (
           allColumns.map((column, i) => (

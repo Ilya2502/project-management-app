@@ -29,11 +29,11 @@
      @include flex(space-between);
      gap: 10px;
      flex-wrap: wrap;
-     padding: 0 10px;
+     padding: 0;
  
      .column-buttons__delete,
      .column-buttons__go-column,
-     .column-buttons__update {
+     .column-buttons__create-task {
        outline: none;
        border: 1px solid $darkColor;
        border-radius: 4px;
@@ -51,9 +51,9 @@
        background: $errorColor;
      }
  
-     .column-buttons__update {
+     .column-buttons__create-task {
        color: $lightColor;
-       background: $updateColor;
+       background: $primaryColor;
      }
    }
  }
@@ -62,7 +62,7 @@
 .update-column-wrapper {
   margin: 0 auto;
   width: 250px;
-  height: 100px;
+  height: 270px;
 
   .update-column-header {
     text-align: center
@@ -101,5 +101,16 @@
       padding: 0;
       width: 100%;
     }
+  }
+}
+
+.update-title-field {
+  margin-top: 10px;;
+  width: 190px;
+  @include flex();
+
+  input {
+    width: 125px;
+    outline: none;
   }
 }

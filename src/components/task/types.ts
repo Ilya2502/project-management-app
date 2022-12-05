@@ -6,7 +6,6 @@ export interface IColumnData {
   title: string;
 }
 
-export interface ICreateTask {
+export interface IUpdateColumn {
   title: string;
-  description: string;
 }
