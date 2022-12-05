@@ -7,8 +7,14 @@ import { removeBoardById, updateCurrentBoard } from 'features/board/board-slice'
 import { AppDispatch } from 'store/store';
 import ModalWindow from 'components/UI/modal-window/modal-window';
 import { useTranslation } from 'react-i18next';
+// import Fuse from "fuse.js";
+// import { store } from '../../store/store';
 
 const Board = (props: BoardProps) => {
+  // const fuse = new Fuse(books, {
+  //   keys: ["title", "author"],
+  // });
+
   const dispatch = useDispatch<AppDispatch>();
   const [openModalWindow, setOpenModalWindow] = useState(false);
   const [openModalWindowDeleteButton, setOpenModalWindowDeleteButton] = useState(false);

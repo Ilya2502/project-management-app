@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { boardService } from '../../components/service/boardService/boardService';
 import { BoardResponseType } from '../../components/service/boardService/types';
+// import Fuse from "fuse.js";
+
+// const fuse = new Fuse(books, {
+//   keys: ["title", "author"],
+// });
 
 const { getAllBoards, deleteBoardById, createBoard, updateBoardById } = boardService;
 
@@ -52,6 +57,9 @@ export const boardSlice = createSlice({
     setBoards: (state, action) => {
       state.boards = action.payload;
     },
+    searchBoard: (state, action) => {
+      state.boards = state.boards.filter((board) => board.title.includes(action.payload));
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(removeBoardById.fulfilled, (state, action) => {
@@ -75,5 +83,5 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { setBoards } = boardSlice.actions;
+export const { setBoards, searchBoard } = boardSlice.actions;
 export default boardSlice.reducer;
