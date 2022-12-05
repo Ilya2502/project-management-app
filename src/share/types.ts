@@ -1,5 +1,6 @@
 import { BoardResponseType } from 'components/service/boardService/types';
 import { ColumnsInBoardResponseType } from 'components/service/columnsService/types';
+import { TaskResponseType } from 'components/service/taskService/types';
 
 export interface ToastMessageProps {
   open: boolean;
@@ -22,6 +23,9 @@ export interface RootState {
   };
   column: {
     columns: ColumnsInBoardResponseType[] | [];
+  };
+  task: {
+    tasks: TaskResponseType[] | [];
   };
 }
 

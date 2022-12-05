@@ -5,7 +5,7 @@ import {
   ColumnResponseType,
 } from '../../components/service/columnsService/types';
 
-const { getColumnsInBoard, createColumn, deleteColumnById } = columnsService;
+const { getColumnsInBoard, createColumn, deleteColumnById, updateColumnById } = columnsService;
 
 const columnState: ColumnsInBoardResponseType = {
   _id: '',
@@ -42,14 +42,13 @@ export const removeColumnById = createAsyncThunk<string, { boardId: string; colu
   }
 );
 
-// export const updateCurrentBoard = createAsyncThunk<
-//   BoardResponseType | null,
-//   { id: string; title: string }
-// >('board/updateCurrentBoard', async (props) => {
-//   const { id, title } = props;
-//   const response = await updateBoardById(id, title);
-//   return response;
-// });
+export const updateCurrentColumn = createAsyncThunk<
+  ColumnResponseType | null,
+  { boardId: string; columnId: string; title: string; order: number }
+>('board/updateCurrentColumn', async ({ boardId, columnId, title, order }) => {
+  const response = await updateColumnById(boardId, columnId, title, order);
+  return response;
+});
 
 export const columnSlice = createSlice({
   name: 'column',
@@ -70,14 +69,14 @@ export const columnSlice = createSlice({
       state.columns = state.columns.filter((column) => column._id !== action.payload);
     });
 
-    // builder.addCase(updateCurrentBoard.fulfilled, (state, action) => {
-    //   state.boards = state.boards.map((board) => {
-    //     if (board._id === action?.payload?._id) {
-    //       return action.payload;
-    //     }
-    //     return board;
-    //   });
-    // });
+    builder.addCase(updateCurrentColumn.fulfilled, (state, action) => {
+      state.columns = state.columns.map((column) => {
+        if (column._id === action?.payload?._id) {
+          return action.payload;
+        }
+        return column;
+      });
+    });
   },
 });
 
