@@ -52,5 +52,7 @@
     "CreateTask": "Create task",
     "columnsNotFound": "Columns not found",
     "updateСolumn": "Update column",
-    "deleteСolumn": "Delete column"
+    "deleteСolumn": "Delete column",
+    "tasksNotFound": "Tasks not found",
+    "changeTitle": "Change title"
 }
