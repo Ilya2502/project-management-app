@@ -10,6 +10,7 @@ import UserLogin from 'pages/user-login/user-login';
 import MainPage from 'pages/main-page/main-page';
 import EditProfile from 'pages/edit-profile/edit-profile';
 import { RootState } from 'share/types';
+import BoardPage from 'pages/board-page/board-page';
 
 const App = () => {
   const isUserLoginNow = useSelector((state: RootState) => state.user.userToken);
@@ -22,6 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<WelcomePage />} />
             <Route path="/main" element={<MainPage />} />
+            <Route path="/main/:id" element={<BoardPage />} />
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/login" element={<UserLogin />} />
             <Route path="/registration" element={<RegistrationUser />} />
