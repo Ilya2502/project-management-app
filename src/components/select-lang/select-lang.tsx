@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
@@ -7,6 +7,7 @@ const SelectLang = () => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setLang(event.target.value as string);
+    localStorage.setItem('langValue', JSON.stringify(event.target.value));
     changeLanguage(event.target.value.toLowerCase());
   };
 
@@ -15,6 +16,13 @@ const SelectLang = () => {
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
   };
+
+  useEffect(() => {
+    const langValue = localStorage.getItem('langValue');
+    if (langValue) {
+      setLang(JSON.parse(langValue));
+    }
+  }, []);
 
   return (
     <FormControl size="small" sx={{ mr: 2 }}>

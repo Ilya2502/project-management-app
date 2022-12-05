@@ -33,7 +33,6 @@ const loginUser = async (login: string, password: string) => {
 const getAllUsers = async () => {
   const endPoint = `users`;
   const data = await getData<UserType[]>(endPoint);
-  console.log(data);
   return data;
 };
 
@@ -41,7 +40,6 @@ const getUserById = async () => {
   const userId = getLocalStorageUserId();
   const endPoint = `users/${userId}`;
   const data = await getData<UserType>(endPoint);
-  console.log(data);
   return data;
 };
 

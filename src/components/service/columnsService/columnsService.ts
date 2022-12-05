@@ -18,7 +18,6 @@ const getColumnsInBoard = async (boardId: string) => {
 const getColumnById = async (boardId: string, columnId: string) => {
   const endPoint = `boards/${boardId}/columns/${columnId}`;
   const data = await getData<ColumnResponseType>(endPoint);
-  console.log(data);
   return data;
 };
 
@@ -26,7 +25,6 @@ const getColumnsByUserId = async () => {
   const userId = getLocalStorageUserId();
   const endPoint = `columnsSet?userId=${userId}`;
   const data = await getData<ColumnResponseType[]>(endPoint);
-  console.log(data);
   return data;
 };
 
@@ -44,7 +42,6 @@ const updateColumnById = async (
   const endPoint = `boards/${boardId}/columns/${columnId}`;
   const body = { title, order };
   const data = await putData<ColumnResponseType, NewColumnType>(endPoint, body);
-  console.log(data);
   return data;
 };
 
