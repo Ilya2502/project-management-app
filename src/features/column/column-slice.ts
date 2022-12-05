@@ -1,8 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { columnsService } from 'components/service/columnsService/columnsService';
-import { ColumnsInBoardResponseType } from '../../components/service/columnsService/types';
+import {
+  ColumnsInBoardResponseType,
+  ColumnResponseType,
+} from '../../components/service/columnsService/types';
 
-const { getColumnsInBoard } = columnsService;
+const { getColumnsInBoard, createColumn, deleteColumnById } = columnsService;
 
 const columnState: ColumnsInBoardResponseType = {
   _id: '',
@@ -23,21 +26,21 @@ export const fetchAllColumns = createAsyncThunk<ColumnsInBoardResponseType[] | n
   }
 );
 
-// export const createNewBoard = createAsyncThunk<BoardResponseType | null, string>(
-//   'board/createNewBoard',
-//   async (title) => {
-//     const response = await createBoard(title);
-//     return response;
-//   }
-// );
+export const createNewColumn = createAsyncThunk<
+  ColumnResponseType | null,
+  { boardId: string; title: string; order: number }
+>('board/createNewColumn', async ({ boardId, title, order }) => {
+  const response = await createColumn(boardId, title, order);
+  return response;
+});
 
-// export const removeBoardById = createAsyncThunk<string, string>(
-//   'board/removeBoardById',
-//   async (id) => {
-//     await deleteBoardById(id);
-//     return id;
-//   }
-// );
+export const removeColumnById = createAsyncThunk<string, { boardId: string; columnId: string }>(
+  'board/removeColumnById',
+  async ({ boardId, columnId }) => {
+    await deleteColumnById(boardId, columnId);
+    return columnId;
+  }
+);
 
 // export const updateCurrentBoard = createAsyncThunk<
 //   BoardResponseType | null,
@@ -57,11 +60,15 @@ export const columnSlice = createSlice({
       if (action.payload) state.columns = action.payload;
     });
 
-    // builder.addCase(createNewBoard.fulfilled, (state, action) => {
-    //   if (action.payload) {
-    //     state.boards.push(action.payload);
-    //   }
-    // });
+    builder.addCase(createNewColumn.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.columns.push(action.payload);
+      }
+    });
+
+    builder.addCase(removeColumnById.fulfilled, (state, action) => {
+      state.columns = state.columns.filter((column) => column._id !== action.payload);
+    });
 
     // builder.addCase(updateCurrentBoard.fulfilled, (state, action) => {
     //   state.boards = state.boards.map((board) => {

@@ -10,9 +10,11 @@ import { fetchAllColumns } from 'features/column/column-slice';
 import ModalWindow from 'components/UI/modal-window/modal-window';
 import { ICreateColumn } from './types';
 import Column from 'components/column/column';
+import { createNewColumn } from 'features/column/column-slice';
 
 const BoardPage = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const boardId = params.id ?? '';
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const allColumns = useSelector((state: RootState) => state.column.columns);
@@ -26,18 +28,17 @@ const BoardPage = () => {
   } = useForm<ICreateColumn>();
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchAllColumns(id));
-    }
-  }, [dispatch, id]);
+    dispatch(fetchAllColumns(boardId));
+  }, [dispatch, boardId]);
 
   const modalWindowHandler = () => {
     openModalWindow ? setOpenModalWindow(false) : setOpenModalWindow(true);
   };
 
   const onSubmit = (data: ICreateColumn) => {
-    // dispatch(createNewcolumn(JSON.stringify(data)));
-    console.log(data);
+    const { title } = data;
+    const order = allColumns.length;
+    dispatch(createNewColumn({ boardId, title, order }));
     reset();
     modalWindowHandler();
   };
@@ -46,7 +47,7 @@ const BoardPage = () => {
     <React.Fragment>
       <ModalWindow open={openModalWindow} setOpen={setOpenModalWindow}>
         <div className="create-column-wrapper">
-          <h3 className="create-column-header"> Create column</h3>
+          <h3 className="create-column-header">Create</h3>
           <form className="create-column-form" onSubmit={handleSubmit(onSubmit)}>
             <label className="create-column-form__label" htmlFor="title">
               {`${t('Title')}:`}
@@ -89,10 +90,21 @@ const BoardPage = () => {
       <Button onClick={modalWindowHandler} sx={{ mt: 2 }} variant="contained">
         {t('Createcolumn')}
       </Button>
+      {allColumns.length > 0 && (
+        <Button onClick={modalWindowHandler} sx={{ mt: 2, ml: 2 }} variant="contained">
+          {t('CreateTask')}
+        </Button>
+      )}
       <div className="columns-wrapper">
         {allColumns.length ? (
-          allColumns.map((column) => (
-            <Column key={column._id} title={column.title} _id={column._id} />
+          allColumns.map((column, i) => (
+            <Column
+              key={column._id}
+              title={column.title}
+              _id={column._id}
+              order={i}
+              boardId={boardId}
+            />
           ))
         ) : (
           <p className="columns-not-found">{t('columnsNotFound')}</p>

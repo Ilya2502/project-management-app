@@ -6,14 +6,12 @@ const createColumn = async (boardId: string, title: string, order: number) => {
   const endPoint = `boards/${boardId}/columns`;
   const body = { title, order };
   const data = await postData<ColumnResponseType, NewColumnType>(endPoint, body);
-  console.log(data);
   return data;
 };
 
 const getColumnsInBoard = async (boardId: string) => {
   const endPoint = `boards/${boardId}/columns`;
   const data = await getData<ColumnsInBoardResponseType[]>(endPoint);
-  console.log(data);
   return data;
 };
 
@@ -34,9 +32,7 @@ const getColumnsByUserId = async () => {
 
 const deleteColumnById = async (boardId: string, columnId: string) => {
   const endPoint = `boards/${boardId}/columns/${columnId}`;
-  const data = await deleteData(endPoint);
-  console.log(data);
-  return data;
+  await deleteData(endPoint);
 };
 
 const updateColumnById = async (
