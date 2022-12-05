@@ -3,12 +3,10 @@ import { BoardResponseType, NewBoardType } from './types';
 import { getLocalStorageUserId } from '../localStorageService/localStorageService';
 
 const createBoard = async (title: string, users = ['']) => {
-  // в title json.stringify({title: '', description: ''})
   const endPoint = `boards`;
   const owner = getLocalStorageUserId();
   const body = { title, owner, users };
   const data = await postData<BoardResponseType, NewBoardType>(endPoint, body);
-  console.log(data);
   return data;
 };
 
@@ -43,7 +41,6 @@ const updateBoardById = async (boardId: string, title: string, users = ['']) => 
   const owner = getLocalStorageUserId();
   const body = { title, owner, users };
   const data = await putData<BoardResponseType, NewBoardType>(endPoint, body);
-  console.log(data);
   return data;
 };
 

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { boardService } from '../../components/service/boardService/boardService';
 import { BoardResponseType } from '../../components/service/boardService/types';
 
-const { getAllBoards, deleteBoardById } = boardService;
+const { getAllBoards, deleteBoardById, createBoard, updateBoardById } = boardService;
 
 const boardState: BoardResponseType = {
   _id: '',
@@ -28,6 +28,23 @@ export const removeBoardById = createAsyncThunk<string, string>(
   }
 );
 
+export const createNewBoard = createAsyncThunk<BoardResponseType | null, string>(
+  'board/createNewBoard',
+  async (title) => {
+    const response = await createBoard(title);
+    return response;
+  }
+);
+
+export const updateCurrentBoard = createAsyncThunk<
+  BoardResponseType | null,
+  { id: string; title: string }
+>('board/updateCurrentBoard', async (props) => {
+  const { id, title } = props;
+  const response = await updateBoardById(id, title);
+  return response;
+});
+
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
@@ -39,6 +56,21 @@ export const boardSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(removeBoardById.fulfilled, (state, action) => {
       state.boards = state.boards.filter((board) => board._id !== action.payload);
+    });
+
+    builder.addCase(createNewBoard.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.boards.push(action.payload);
+      }
+    });
+
+    builder.addCase(updateCurrentBoard.fulfilled, (state, action) => {
+      state.boards = state.boards.map((board) => {
+        if (board._id === action?.payload?._id) {
+          return action.payload;
+        }
+        return board;
+      });
     });
   },
 });

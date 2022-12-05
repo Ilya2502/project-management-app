@@ -48,4 +48,10 @@
   @include flex(flex-start);
   flex-wrap: wrap;
   gap: 15px;
+
+  .boards-not-found {
+    position: absolute;
+    font-size: 1.5rem;
+    left: calc(50vw - 100px);
+  }
 }

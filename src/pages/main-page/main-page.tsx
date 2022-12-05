@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalWindow from 'components/UI/modal-window/modal-window';
 import { ICreateBoard } from './types';
-import { fetchAllBoards } from 'features/board/board-slice';
+import { fetchAllBoards, createNewBoard } from 'features/board/board-slice';
 import Board from 'components/board/board';
 import { RootState } from 'share/types';
 import { AppDispatch } from 'store/store';
@@ -30,7 +30,7 @@ const MainPage = () => {
   };
 
   const onSubmit = (data: ICreateBoard) => {
-    console.log(data);
+    dispatch(createNewBoard(JSON.stringify(data)));
     reset();
     modalWindowHandler();
   };
@@ -109,7 +109,7 @@ const MainPage = () => {
         {allBoards.length ? (
           allBoards.map((board) => <Board key={board._id} title={board.title} _id={board._id} />)
         ) : (
-          <p className="boards-not-found">Boards not found</p>
+          <p className="boards-not-found">Boards not found...</p>
         )}
       </div>
     </React.Fragment>
