@@ -72,7 +72,6 @@ const Column = (props: ColumnResponseType) => {
     setChangeTitle(false);
     const title = inputTitle;
     dispatch(updateCurrentColumn({ boardId, columnId, title, order }));
-    console.log({ title });
   };
 
   return (
