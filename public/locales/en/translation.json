@@ -46,5 +46,11 @@
     "OurApp": "Our app is designed to help you get more done. We are constantly updating our software to make it easier and easier for your teams to complete their tasks, and for you to keep track of what is happening in your company.",
     "OurTeam": "Our team",
     "FrontEndDeveloper": "Front-end developer",
-    "TeamLead": "Team Lead"
+    "TeamLead": "Team Lead",
+    "Create": "Create",
+    "CreateСolumn": "Create column",
+    "CreateTask": "Create task",
+    "columnsNotFound": "Columns not found",
+    "updateСolumn": "Update column",
+    "deleteСolumn": "Delete column"
 }

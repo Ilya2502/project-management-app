@@ -47,7 +47,7 @@ const BoardPage = () => {
     <React.Fragment>
       <ModalWindow open={openModalWindow} setOpen={setOpenModalWindow}>
         <div className="create-column-wrapper">
-          <h3 className="create-column-header">Create</h3>
+          <h3 className="create-column-header">{t('Create')}</h3>
           <form className="create-column-form" onSubmit={handleSubmit(onSubmit)}>
             <label className="create-column-form__label" htmlFor="title">
               {`${t('Title')}:`}
@@ -81,14 +81,14 @@ const BoardPage = () => {
             <input
               className="create-column-form__submit"
               type="submit"
-              value={`${t('Createcolumn')}`}
+              value={`${t('CreateСolumn')}`}
             />
           </form>
         </div>
       </ModalWindow>
 
       <Button onClick={modalWindowHandler} sx={{ mt: 2 }} variant="contained">
-        {t('Createcolumn')}
+        {t('CreateСolumn')}
       </Button>
       {allColumns.length > 0 && (
         <Button onClick={modalWindowHandler} sx={{ mt: 2, ml: 2 }} variant="contained">
