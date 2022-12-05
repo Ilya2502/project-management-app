@@ -19,7 +19,6 @@ const getAllBoards = async () => {
 const getBoardById = async (boardId: string) => {
   const endPoint = `boards/${boardId}`;
   const data = await getData<BoardResponseType>(endPoint);
-  console.log(data);
   return data;
 };
 
@@ -27,7 +26,6 @@ const getBoardsByUserId = async () => {
   const userId = getLocalStorageUserId();
   const endPoint = `boardsSet/${userId}`;
   const data = await getData<BoardResponseType[]>(endPoint);
-  console.log(data);
   return data;
 };
 
